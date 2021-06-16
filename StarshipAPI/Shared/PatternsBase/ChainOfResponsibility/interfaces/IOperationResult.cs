@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Runtime.Serialization;
 using Shared.constants;
 using Shared.PatternsBase.ChainOfResponsibility.classes;
 
