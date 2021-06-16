@@ -13,6 +13,9 @@ namespace StarshipAPI.Models
         {
         }
 
-        public DbSet<Crewmate> TodoItems { get; set; }
+        public DbSet<Crewmate> Crewmate { get; set; }
+
+        public DbSet<Ship> Ship { get; set; }
+
     }
 }
