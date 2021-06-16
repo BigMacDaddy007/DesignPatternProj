@@ -7,6 +7,15 @@ public abstract class ModuleRoom {
     public int totalResource;
     public int totalEnergyCost;
     public int resourceExpenditure;
+    public bool isTiled { get; set; }
+    public bool ceilingPainted { get; set; }
+    public bool hasWindows {get; set;}
+
+public ModuleRoom() { 
+    isTiled = false;
+    ceilingPainted = false;
+    hasWindows = false;
+}
 protected string moduleID {
     set;
     get;
