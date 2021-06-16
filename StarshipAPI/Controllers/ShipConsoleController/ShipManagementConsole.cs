@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Shared.Modules.ShipManagementConsoleModule.Models;
 using Shared.PatternsBase.Command.classes;
+using StarshipAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

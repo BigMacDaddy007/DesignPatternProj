@@ -46,7 +46,7 @@ namespace StarshipAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutShip(long id, Ship ship)
         {
-            if (id != ship.ID)
+            if (id != ship.Id)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace StarshipAPI.Controllers
             _context.Ship.Add(ship);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetShip), new { id = ship.ID }, ship);
+            return CreatedAtAction(nameof(GetShip), new { id = ship.Id }, ship);
         }
 
         // DELETE: api/Ships/5
@@ -101,7 +101,7 @@ namespace StarshipAPI.Controllers
 
         private bool ShipExists(long id)
         {
-            return _context.Ship.Any(e => e.ID == id);
+            return _context.Ship.Any(e => e.Id == id);
         }
     }
 }

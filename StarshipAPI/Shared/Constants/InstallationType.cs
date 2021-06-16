@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarshipAPI.Models
+namespace StarshipAPI.Shared.Constants
 {
-    public class Expenses
+    public enum InstallationType
     {
-        public long Id { get; set; }
+        Module,
+        Room,
+        Unit
     }
 }

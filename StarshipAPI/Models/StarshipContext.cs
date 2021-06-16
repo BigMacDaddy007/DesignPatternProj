@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using StarshipAPI.Models;
 
 namespace StarshipAPI.Models
 {
@@ -16,6 +17,8 @@ namespace StarshipAPI.Models
         public DbSet<Crewmate> Crewmate { get; set; }
 
         public DbSet<Ship> Ship { get; set; }
+
+        public DbSet<Finance> Finances { get; set; }
 
     }
 }
