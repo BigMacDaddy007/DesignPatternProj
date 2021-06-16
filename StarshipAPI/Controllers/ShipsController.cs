@@ -11,47 +11,47 @@ namespace StarshipAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CrewmatesController : ControllerBase
+    public class ShipsController : ControllerBase
     {
         private readonly StarshipContext _context;
 
-        public CrewmatesController(StarshipContext context)
+        public ShipsController(StarshipContext context)
         {
             _context = context;
         }
 
-        // GET: api/Crewmates
+        // GET: api/Ships
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Crewmate>>> GetTodoItems()
+        public async Task<ActionResult<IEnumerable<Ship>>> GetShip()
         {
-            return await _context.Crewmate.ToListAsync();
+            return await _context.Ship.ToListAsync();
         }
 
-        // GET: api/Crewmates/5
+        // GET: api/Ships/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Crewmate>> GetCrewmate(long id)
+        public async Task<ActionResult<Ship>> GetShip(long id)
         {
-            var crewmate = await _context.Crewmate.FindAsync(id);
+            var ship = await _context.Ship.FindAsync(id);
 
-            if (crewmate == null)
+            if (ship == null)
             {
                 return NotFound();
             }
 
-            return crewmate;
+            return ship;
         }
 
-        // PUT: api/Crewmates/5
+        // PUT: api/Ships/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCrewmate(long id, Crewmate crewmate)
+        public async Task<IActionResult> PutShip(long id, Ship ship)
         {
-            if (id != crewmate.Id)
+            if (id != ship.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(crewmate).State = EntityState.Modified;
+            _context.Entry(ship).State = EntityState.Modified;
 
             try
             {
@@ -59,7 +59,7 @@ namespace StarshipAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!CrewmateExists(id))
+                if (!ShipExists(id))
                 {
                     return NotFound();
                 }
@@ -72,36 +72,36 @@ namespace StarshipAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Crewmates
+        // POST: api/Ships
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Crewmate>> PostCrewmate(Crewmate crewmate)
+        public async Task<ActionResult<Ship>> PostShip(Ship ship)
         {
-            _context.Crewmate.Add(crewmate);
+            _context.Ship.Add(ship);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetCrewmate), new { id = crewmate.Id }, crewmate);
+            return CreatedAtAction(nameof(GetShip), new { id = ship.ID }, ship);
         }
 
-        // DELETE: api/Crewmates/5
+        // DELETE: api/Ships/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCrewmate(long id)
+        public async Task<IActionResult> DeleteShip(long id)
         {
-            var crewmate = await _context.Crewmate.FindAsync(id);
-            if (crewmate == null)
+            var ship = await _context.Ship.FindAsync(id);
+            if (ship == null)
             {
                 return NotFound();
             }
 
-            _context.Crewmate.Remove(crewmate);
+            _context.Ship.Remove(ship);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool CrewmateExists(long id)
+        private bool ShipExists(long id)
         {
-            return _context.Crewmate.Any(e => e.Id == id);
+            return _context.Ship.Any(e => e.ID == id);
         }
     }
 }

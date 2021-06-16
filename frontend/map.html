@@ -1,0 +1,36 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Starship Command</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+      <img src="images/sc.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+      Starship Command
+      </a>
+    </nav>
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <h1>Where to, Commander?</h1>
+        <p>Choose a location to travel to</p> 
+      </div>
+      <ul id="locations" class="list-group">
+      </ul>
+      
+      <div class="container text-center">
+        <button id="cancel" class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+
+    <script src="./js/map.js" type="module"></script>
+  </body>
+</html>
