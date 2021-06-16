@@ -25,7 +25,7 @@ namespace StarshipAPI.Controllers.MiningSectorController.Commands
             Console.WriteLine("Sending Response with details about result...");
         }
 
-        public ICommand MakeCommand(CommandExecuteParams arguments)
+        public ICommand MakeCommand()
         {
             return new MiningExpeditionCommand(this.Context);
         }

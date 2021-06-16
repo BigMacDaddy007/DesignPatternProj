@@ -7,8 +7,6 @@ namespace Shared.PatternsBase.Command.interfaces
     {
         String CommandName { get; }
         String CommandDescription { get; }
-
-        ICommand MakeCommand(CommandExecuteParams arguments);
-
+        ICommand MakeCommand();
     }
 }

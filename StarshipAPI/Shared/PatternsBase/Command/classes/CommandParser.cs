@@ -1,4 +1,5 @@
 ﻿using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,13 @@ namespace Shared.PatternsBase.Command.classes
         {
             ICommandFactory requestedCommand = this.FindCommand(command.CommandName);
 
-            return requestedCommand.MakeCommand(command);
+            if (requestedCommand.GetType() == typeof(ICommandParameters))
+            {
+                var commandInstance = requestedCommand.MakeCommand();
+                (commandInstance as ICommandParameters).Parameters = command;
+                return commandInstance;
+            }
+            return requestedCommand.MakeCommand();
         }
 
         public IEnumerable<ICommandFactory> GetAvailabelCommands()
