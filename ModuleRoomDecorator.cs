@@ -64,5 +64,7 @@ public class ModuleRoomDecorator {
     Console.WriteLine("this room has a tiled floor");
     if(moduleRoom.ceilingPainted)
     Console.WriteLine("this room has a painted ceiling");
+    if(moduleRoom.hasWindows)
+    Console.WriteLine("this room has windows");
   }
 }
