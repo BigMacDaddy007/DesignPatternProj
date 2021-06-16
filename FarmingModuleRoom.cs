@@ -3,7 +3,7 @@ public class FarmingModuleRoom: ModuleRoom {
     protected int farmSize { get; set;}
     protected string cropPlanted {get; set;}
     public FarmingModuleRoom() { 
-        numOfGenerators = 0;
+        numOfFarmers = 0;
     }
       public FarmingModuleRoom(int farmSize) { 
         this.numOfFarmers = 0;

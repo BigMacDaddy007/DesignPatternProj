@@ -1,6 +1,6 @@
 public abstract class ModuleRoom { 
 
-     public int fuelExpenditure;
+    public int fuelExpenditure;
     public int totalFuel;
     public float efficiencyScore;
     public string name {get; set;}
