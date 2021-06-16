@@ -1,0 +1,49 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Starship Command</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/css/main.css">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+      <img src="images/sc.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+      Starship Command
+      </a>
+    </nav>
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <img class="main-logo" src="/images/crew.svg" width="30%">
+        <h1>Select your crew</h1> 
+      </div>
+      <div class="container text-center">
+        <h3 id="total">Total Crew: 0/5</h3>
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Class</th>
+            <th scope="col">Stats</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id="table-body">
+        </tbody>
+      </table>
+      <div class="container text-center">
+        <button id="launch" class="btn btn-success">Launch</button>
+        <button id="cancel" class="btn btn-danger">Cancel</button>
+      </div>
+    </div>
+
+    <script src="./js/crew.js" type="module"></script>
+  </body>
+</html>
