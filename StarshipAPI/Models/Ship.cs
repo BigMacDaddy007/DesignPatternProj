@@ -19,6 +19,5 @@ namespace StarshipAPI.Models
         public int totalResource { get; set; }
 
         public int resourceExpenditure { get; set; }
-
     }
 }

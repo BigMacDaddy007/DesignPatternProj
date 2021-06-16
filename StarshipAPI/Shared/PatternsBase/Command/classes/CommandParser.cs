@@ -10,7 +10,7 @@ namespace Shared.PatternsBase.Command.classes
     {
         readonly IEnumerable<ICommandFactory> _commands;
 
-        CommandParser(IEnumerable<ICommandFactory> commands)
+        public CommandParser(IEnumerable<ICommandFactory> commands)
         {
             this._commands = commands;
         }
@@ -35,6 +35,11 @@ namespace Shared.PatternsBase.Command.classes
         public void AddCommand(ICommandFactory command)
         {
             this._commands.Append(command);
+        }
+
+        public void AddCommands(IEnumerable<ICommandFactory> commands)
+        {
+            this._commands.Concat(commands);
         }
 
         public ICommandFactory FindCommand(string command)

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Shared.PatternsBase.ChainOfResponsibility.interfaces
 {
-    interface IOperationHandler
+    public interface IOperationHandler
     {
         IOperationResult Operate(IOperation operation);
         void RegisterNextSector(IOperationHandler next);
