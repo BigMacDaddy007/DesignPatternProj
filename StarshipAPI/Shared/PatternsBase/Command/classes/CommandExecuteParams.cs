@@ -10,7 +10,7 @@ namespace Shared.PatternsBase.Command.classes
 
         public string CommandName { get { return this._commandName; } }
 
-        CommandExecuteParams(string commandName)
+        public CommandExecuteParams(string commandName)
         {
             this._commandName = commandName;
         }

@@ -6,7 +6,10 @@ namespace Shared.PatternsBase.Command.interfaces
 {
     public interface ICommand
     {
+        // All Commands Interact with DB if Persistence is Required.
         public void Execute();
         public void Validate();
+
+        public void Undo();
     }
 }
