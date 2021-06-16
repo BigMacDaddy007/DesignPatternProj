@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Shared.PatternsBase.ChainOfResponsibility.interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace ChainOfResponsibility.interfaces
+namespace Shared.PatternsBase.ChainOfResponsibility.classes
 {
     public abstract class Operator
     {

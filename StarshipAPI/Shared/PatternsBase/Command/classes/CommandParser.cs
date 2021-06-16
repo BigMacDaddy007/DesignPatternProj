@@ -1,4 +1,4 @@
-﻿using Command.interfaces;
+﻿using Shared.PatternsBase.Command.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
