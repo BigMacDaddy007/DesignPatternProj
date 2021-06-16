@@ -17,12 +17,12 @@ namespace StarshipAPI.Controllers.MiningSectorController
     public class MiningSectorController : ControllerBase
     {
         private readonly StarshipContext _context;
-        private MiningOperationCommandsParser _commandParser;
+        private MiningSectorCommandsParser _commandParser;
 
         public MiningSectorController(StarshipContext context)
         {
             this._context = context;
-            this._commandParser = new MiningOperationCommandsParser(this.getAvailableCommands());
+            this._commandParser = new MiningSectorCommandsParser(this.getAvailableCommands());
             // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 

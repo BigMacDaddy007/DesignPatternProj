@@ -1,4 +1,5 @@
 ﻿using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace StarshipAPI.Shared.PatternsBase.Command.classes
 {
     public abstract class CommandWithNoParams : ICommand
     {
+        public ICommandResult Result { get { return null; } }
         public abstract void Execute();
 
         public abstract void Undo();

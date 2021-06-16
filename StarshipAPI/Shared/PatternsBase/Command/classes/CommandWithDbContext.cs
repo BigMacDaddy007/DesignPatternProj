@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace StarshipAPI.Shared.PatternsBase.Command.classes
         private DbContext _context;
 
         public DbContext Context { get { return this._context; } }
+
+        public ICommandResult Result { get { return null; } }
 
         public CommandWithDbContext(DbContext context)
         {

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace StarshipAPI.Controllers.MiningSectorController
 {
-    public class MiningOperationCommandsParser : CommandParser
+    public class MiningSectorCommandsParser : CommandParser
     {
 
-        public MiningOperationCommandsParser(IEnumerable<ICommandFactory> commands): base(commands) { }
+        public MiningSectorCommandsParser(IEnumerable<ICommandFactory> commands): base(commands) { }
     }
 }

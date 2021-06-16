@@ -1,5 +1,6 @@
 ﻿using Shared.PatternsBase.Command.classes;
 using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,9 @@ namespace StarshipAPI.Shared.PatternsBase.Command.classes
         private CommandExecuteParams _params;
 
         public CommandExecuteParams Params { get { return this._params; } }
+
+        public ICommandResult Result { get { return null; } }
+
         CommandWithParams(CommandExecuteParams parameters)
         {
             this._params = parameters;

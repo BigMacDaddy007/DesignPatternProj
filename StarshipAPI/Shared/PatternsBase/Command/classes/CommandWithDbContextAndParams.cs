@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Shared.PatternsBase.Command.classes;
+using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 
 namespace StarshipAPI.Shared.PatternsBase.Command.classes
 {
@@ -15,6 +16,8 @@ namespace StarshipAPI.Shared.PatternsBase.Command.classes
 
         private DbContext _context;
         public DbContext Context { get { return this._context; } }
+
+        public ICommandResult Result { get { return null; } }
 
         CommandWithDbContextAndParams(CommandExecuteParams parameters, DbContext context)
         {
