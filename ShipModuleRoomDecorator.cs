@@ -4,7 +4,7 @@ public class ShipModuleRoomDecorator: ModuleRoomDecorator {
     public ShipModuleRoomDecorator(ModuleRoom moduleRoom) { 
         this.moduleRoom = moduleRoom;
     }
-    public int Name { get; set;}
+    public void nameModuleRoom(string name) {moduleRoom.moduleID = name;} // naming the module room
     public int getFuelExpenditure() { return moduleRoom.getFuelExpenditure(); }
     public int getEnergyExpenditure() { return moduleRoom.getEnergyExpenditure(); }
     public int getResourceExpenditure() { return moduleRoom.getResourceExpenditure(); }
