@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\ProcessingSectorController\Commands\Params\" />
+    <Folder Include="Controllers\ProductionSectorController\Commands\Params\" />
   </ItemGroup>
 
 </Project>

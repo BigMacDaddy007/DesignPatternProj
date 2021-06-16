@@ -7,15 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarshipAPI.Controllers.ProcessingSectorController.Commands
+namespace StarshipAPI.Controllers.ProductionSectorController.Commands
 {
-    public class ConvertResourceToEnergyCommand : CommandWithDbContext, ICommandFactory
+    public class ConvertEnergyAndResourceToFuelCommand : CommandWithDbContext, ICommandFactory
     {
-        public string CommandName { get { return "ConvertResourceToEnergyCommand"; } }
+        public string CommandName { get { return "ConvertEnergyAndResourceToFuelCommand"; } }
 
-        public string CommandDescription { get { return "Convert Resource into Energy"; } }
+        public string CommandDescription { get { return "Convert Energy and Resources into Fuel"; } }
 
-        public ConvertResourceToEnergyCommand(DbContext context) : base(context) { }
+        public ConvertEnergyAndResourceToFuelCommand(DbContext context) : base(context) { }
 
         public override void Execute()
         {
@@ -27,7 +27,7 @@ namespace StarshipAPI.Controllers.ProcessingSectorController.Commands
 
         public ICommand MakeCommand(CommandExecuteParams arguments)
         {
-            return new ConvertResourceToEnergyCommand(this.Context);
+            return new ConvertEnergyAndResourceToFuelCommand(this.Context);
         }
 
         public override void Validate()

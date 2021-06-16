@@ -18,7 +18,11 @@ namespace StarshipAPI.Models
 
         public DbSet<Ship> Ship { get; set; }
 
-        public DbSet<Finance> Finances { get; set; }
+        public DbSet<Finance> Finance { get; set; }
 
+        public DbSet<ModuleUnitRoom> ModuleUnitRoom { get; set; }
+
+        public DbSet<Operator> Operator { get; set; }
+        public DbSet<ShipModuleUnitRoom> ShipModuleUnitRoom { get; set; }
     }
 }
