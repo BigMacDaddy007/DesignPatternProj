@@ -3,7 +3,7 @@ public class EnergyGeneratorModuleRoom: ModuleRoom {
     public EnergyGeneratorModuleRoom() { 
         numOfGenerators = 0;
     }
-      public MiningModuleRoom(int numOfGenerators) { 
+      public EnergyGeneratorModuleRoom(int numOfGenerators) { 
         this.numOfGenerators = numOfGenerators;
     }
 
