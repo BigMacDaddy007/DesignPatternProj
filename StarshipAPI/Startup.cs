@@ -27,8 +27,10 @@ namespace StarshipAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<StarshipContext>(opt =>
-                                               opt.UseInMemoryDatabase("Starship"));
+            // services.AddDbContext<StarshipContext>(opt =>
+            //                                    opt.UseInMemoryDatabase("Starship"));
+            services.AddDbContext<StarshipContext>(opt => 
+                opt.UseSqlServer(Configuration.GetConnectionString("StarshipDatabase")));
             services.AddControllers();
         }
 

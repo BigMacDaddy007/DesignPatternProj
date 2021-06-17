@@ -9,19 +9,16 @@ namespace StarshipAPI.Models
     public class Ship
     {
         public long Id { get; set; }
+        
         public string Name { get; set; }
 
-        public double EfficienyScore { get; set; }
+        public int Energy { get; set; }
 
-        public int TotalEnergyCost { get; set; }
+        public int  Fuel { get; set; }
 
-        public int  FuelExpenditure { get; set; }
+        public int Resources { get; set; }
 
-        public int TotalResource { get; set; }
-
-        public int ResourceExpenditure { get; set; }
         public bool Active { get; set; }
-        public SqlDateTime EntryDate { get; set; }
 
         public ICollection<ShipSectorManager> ShipSectorManagers { get; set; }
         public ICollection<Finance> Finances { get; set; }

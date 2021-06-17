@@ -17,8 +17,6 @@ namespace StarshipAPI.Models
         public int ResourceMaintenanceCost { get; set; }
         public int PurchaseCost { get; set; }
         public int InstallationCost { get; set; }
-        public InstallationType Type { get; set; }
-        public SqlDateTime EntryDate { get; set; }
         public ICollection<ShipModuleUnitRoom> ShipModuleUnitRooms { get; set; }
     }
 }
