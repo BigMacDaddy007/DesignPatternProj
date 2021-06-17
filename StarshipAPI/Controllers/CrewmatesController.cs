@@ -29,7 +29,7 @@ namespace StarshipAPI.Controllers
 
         // GET: api/Crewmates/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Crewmate>> GetCrewmate(long id)
+        public async Task<ActionResult<Crewmate>> GetCrewmate(int id)
         {
             var crewmate = await _context.Crewmate.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace StarshipAPI.Controllers
         // PUT: api/Crewmates/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCrewmate(long id, Crewmate crewmate)
+        public async Task<IActionResult> PutCrewmate(int id, Crewmate crewmate)
         {
             if (id != crewmate.Id)
             {
@@ -85,7 +85,7 @@ namespace StarshipAPI.Controllers
 
         // DELETE: api/Crewmates/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCrewmate(long id)
+        public async Task<IActionResult> DeleteCrewmate(int id)
         {
             var crewmate = await _context.Crewmate.FindAsync(id);
             if (crewmate == null)
@@ -99,7 +99,7 @@ namespace StarshipAPI.Controllers
             return NoContent();
         }
 
-        private bool CrewmateExists(long id)
+        private bool CrewmateExists(int id)
         {
             return _context.Crewmate.Any(e => e.Id == id);
         }

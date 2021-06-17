@@ -29,7 +29,7 @@ namespace StarshipAPI.Controllers
 
         // GET: api/Ships/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Ship>> GetShip(long id)
+        public async Task<ActionResult<Ship>> GetShip(int id)
         {
             var ship = await _context.Ship.FindAsync(id);
 
@@ -44,7 +44,7 @@ namespace StarshipAPI.Controllers
         // PUT: api/Ships/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutShip(long id, Ship ship)
+        public async Task<IActionResult> PutShip(int id, Ship ship)
         {
             if (id != ship.Id)
             {
@@ -85,7 +85,7 @@ namespace StarshipAPI.Controllers
 
         // DELETE: api/Ships/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteShip(long id)
+        public async Task<IActionResult> DeleteShip(int id)
         {
             var ship = await _context.Ship.FindAsync(id);
             if (ship == null)
@@ -99,7 +99,7 @@ namespace StarshipAPI.Controllers
             return NoContent();
         }
 
-        private bool ShipExists(long id)
+        private bool ShipExists(int id)
         {
             return _context.Ship.Any(e => e.Id == id);
         }
