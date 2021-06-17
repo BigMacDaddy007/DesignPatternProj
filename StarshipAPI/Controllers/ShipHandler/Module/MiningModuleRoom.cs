@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
 using System;
 
@@ -7,12 +8,19 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
     {
         protected int numOfMiners { get; set; }
         protected int mineSize { get; set; }
-        public MiningModuleRoom(int mineSize)
+        
+        public MiningModuleRoom(DbContext context) : base(context)
+        {
+            numOfMiners = 0;
+        }
+
+        public MiningModuleRoom(int mineSize, DbContext context) : base(context)
         {
             numOfMiners = 0;
             this.mineSize = mineSize;
         }
-        public MiningModuleRoom(int numofMiners, int wardSize)
+
+        public MiningModuleRoom(int numofMiners, int wardSize, DbContext context) : base(context)
         {
             this.numOfMiners = numOfMiners;
             this.mineSize = mineSize;
@@ -50,6 +58,11 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
         {
             Console.WriteLine("this mining operation has " + numOfMiners + " miners working here");
             return null;
+        }
+
+        public override void loadDbState()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -28,7 +28,12 @@ namespace StarshipAPI.Controllers.ShipHandler
         public IEnumerable<ModuleRoom> GetAvailableModules()
         {
             return new ModuleRoom[] {
-                new CafeteriaModuleRoom(),
+                new CafeteriaModuleRoom(this._context),
+                new EnergyGeneratorModuleRoom(this._context),
+                new FarmingModuleRoom(this._context),
+                new MedicineModuleRoom(this._context),
+                new MiningModuleRoom(this._context),
+                new ResourceStorageModuleRoom(this._context)
             };
         }
     }
