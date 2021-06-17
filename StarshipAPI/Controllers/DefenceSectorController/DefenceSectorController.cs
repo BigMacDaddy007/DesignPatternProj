@@ -27,6 +27,7 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         {
             return new ICommandFactory[] {
                 new UseEnergyToRechargeShieldCommand(this._context)
+                //TODO: 
             };
         }
 
