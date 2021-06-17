@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Controllers.Common.Commands;
 using StarshipAPI.Controllers.NavigationalSectorController.Commands;
 using StarshipAPI.Models;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
@@ -40,5 +41,30 @@ namespace StarshipAPI.Controllers.NavigationalSectorController
         {
             return this._commandParser.GetAvailabelCommands().ToList();
         }
+        [HttpPut("setdestinationcommand/{id}")]
+        public async Task<ActionResult<GeneralCommandResult<Ship>>> ChangeLocation(int id)
+        {
+            try
+            {
+                var ship = await _context.Ship.FindAsync(1);
+                var locationId =  _context.Location.Find(id);
+                             
+                ship.LocationID = locationId.ID;
+                var parameters = new GeneralCommandParams("SetDestinationCommand");
+                parameters.Ship = ship;
+                var command = _commandParser.ParseCommand(parameters);
+                (command as SetDestinationCommand).Parameters = parameters;
+                command.Execute();
+                return (command.Result as GeneralCommandResult<Ship>);
+            }
+            catch
+            {
+                var ship = await _context.Ship.FindAsync(1);
+                return new GeneralCommandResult<Ship>();
+            }
+            
+        }
     }
+
 }
+

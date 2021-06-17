@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Shared.constants;
 using Shared.PatternsBase.Command.classes;
 using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Controllers.Common.Commands;
+using StarshipAPI.Models;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
 using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 using System;
@@ -21,10 +24,11 @@ namespace StarshipAPI.Controllers.NavigationalSectorController.Commands
 
         public override void Execute()
         {
-            Console.WriteLine("Get Current Ship Location In DB");
-            Console.WriteLine("Randomly check if Resources are available using Encounter Engine");
-            Console.WriteLine("Store Resource in DB if Encounter Generator Shows Positive Hit");
-            Console.WriteLine("Sending Response with details about result...");
+            Context.Update((this.Parameters as GeneralCommandParams).Ship);
+            Context.SaveChanges();
+            this.Result = new GeneralCommandResult<Ship>();
+            (this.Result as GeneralCommandResult<Ship>).Payload = new Ship[] { (this.Parameters as GeneralCommandParams).Ship };
+            (this.Result as GeneralCommandResult<Ship>).Status = ResultStatus.SUCCESS;
         }
 
         public ICommand MakeCommand()
