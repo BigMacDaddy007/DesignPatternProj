@@ -32,11 +32,11 @@ namespace StarshipAPI.Controllers.ProductionSectorController.Commands
             return new ConvertResourceToEnergyCommand(this.Context);
         }
 
-        public override void Validate()
+        public override bool Validate()
         {
             Console.WriteLine("Run Validation Against Params or Data in DB");
+            return true;
         }
-
         public override void Undo()
         {
             throw new NotImplementedException();
