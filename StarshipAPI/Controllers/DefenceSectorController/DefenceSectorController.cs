@@ -47,8 +47,6 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         [HttpPost("command/")]
         public IEnumerable<Finance> GetSectorFinanceReport(GeneralCommandParams obj)
         {
-            // Get The Ship
-
             var ship = new Ship();
             ship.Id = 1;
 
@@ -83,6 +81,23 @@ namespace StarshipAPI.Controllers.DefenceSectorController
             return (command.Result as GeneralCommandResult<Finance>).Payload.FirstOrDefault();
         }
 
+        [HttpGet("report/finance/")]
+        public ActionResult<GeneralCommandResult<Finance>> GenerateReport()
+        {
+             var ship = new Ship();
+            ship.Id = 1;
+
+            var parameters = new GeneralCommandParams("GetSectorFinanceReport");
+            parameters.Sector = SectorType.Defence;
+            parameters.Ship = ship;
+            var command = _commandParser.ParseCommand(parameters);
+
+            (command as GetSectorFinanceReport).Parameters = parameters;
+            command.Execute();
+            return (command.Result as GeneralCommandResult<Finance>);
+        }
 
     }
+
+
 }

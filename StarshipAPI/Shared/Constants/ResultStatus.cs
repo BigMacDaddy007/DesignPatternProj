@@ -6,8 +6,8 @@ namespace Shared.constants
 {
     public enum ResultStatus
     {
-        SUCCESS,
         FAILED,
+        SUCCESS,
         INITIATED
     }
 }

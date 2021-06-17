@@ -26,6 +26,8 @@ namespace StarshipAPI.Controllers.Common.Commands
 
         public override void Execute()
         {
+            var parameters = (this.Parameters as GeneralCommandParams);
+            var results = new GeneralCommandResult<Finance>();
             try
             {
                 if (!this.Validate() || (this.Parameters as GeneralCommandParams).Ship == null)
@@ -33,22 +35,24 @@ namespace StarshipAPI.Controllers.Common.Commands
                     throw new Exception("Invalid Parameters Provided");
                 }
 
-                this.Result = new GeneralCommandResult<Finance>();
+                results.Payload = GetReport(parameters.Ship).Result;
 
-                (this.Result as GeneralCommandResult<Finance>).Payload = (IEnumerable<Finance>)GetReport((this.Parameters as GeneralCommandParams).Ship);
-
-                if ((this.Result as GeneralCommandResult<Finance>).Payload == null)
+                if (results.Payload == null)
                 {
                     throw new Exception("Request Failed.");
                 }
 
+                results.Status = ResultStatus.SUCCESS;
+                results.Reason = "Request Successful";
+                this.Result = results;
 
-            } catch (Exception ex)
+            } 
+            catch (Exception ex)
             {
-                this.Result = new GeneralCommandResult<Finance>();
-                this.Result.Status = ResultStatus.FAILED;
-                this.Result.Reason = ex.Message;
-                (this.Result as GeneralCommandResult<Finance>).Payload = null;
+                results.Status = ResultStatus.FAILED;
+                results.Reason = ex.Message;
+                results.Payload = null;
+                this.Result = results;
             }
         }
 
