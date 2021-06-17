@@ -12,7 +12,7 @@ namespace StarshipAPI.Models
 {
     public class Finance
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public FinanceType Type { get; set; }
         public string Request { get; set; }
         public int Value { get; set; }
