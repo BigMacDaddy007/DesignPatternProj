@@ -61,20 +61,6 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         [HttpGet("buyshields/")]
         public ActionResult<Finance> BuyShields()
         {
-
-            //var parameters = new Finance();
-            //parameters.Request = "Buy Shield";
-            //parameters.Sector = SectorType.Defence;
-            //parameters.Value = 100;
-            //parameters.ShipID = 1;
-            //parameters.Type = Shared.Constants.FinanceType.Income;
-
-            //Console.WriteLine(parameters.ToString());
-
-            //var result = this._context.Finance.Add(parameters);
-            //this._context.SaveChanges();          
-            //return result.ToString();
-
             var parameters = new GeneralCommandParams("BuyShieldsCommand");
             var command = _commandParser.ParseCommand(parameters);
 
