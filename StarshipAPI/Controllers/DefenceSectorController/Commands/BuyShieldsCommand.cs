@@ -40,11 +40,11 @@ namespace StarshipAPI.Controllers.DefenceSectorController.Commands
 
 
                 var result = (this.Context as StarshipContext).Finance.Add(expense);
-
+                this.Result = new GeneralCommandResult<Finance>();
                 (this.Context as StarshipContext).SaveChanges();
-                //(this.Result as GeneralCommandResult<Finance>).Payload = new Finance[] { result.Entity };
+                (this.Result as GeneralCommandResult<Finance>).Payload = new Finance[] { result.Entity };
 
-           }
+            }
            catch
            {
 

@@ -59,7 +59,7 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         }
 
         [HttpGet("buyshields/")]
-        public ActionResult<string> BuyShields()
+        public ActionResult<Finance> BuyShields()
         {
 
             //var parameters = new Finance();
@@ -77,10 +77,10 @@ namespace StarshipAPI.Controllers.DefenceSectorController
 
             var parameters = new GeneralCommandParams("BuyShieldsCommand");
             var command = _commandParser.ParseCommand(parameters);
-            Console.WriteLine(command.ToString());
+
             (command as BuyShieldsCommand).Parameters = parameters;
             command.Execute();
-            return "Done";
+            return (command.Result as GeneralCommandResult<Finance>).Payload.FirstOrDefault();
         }
 
 
