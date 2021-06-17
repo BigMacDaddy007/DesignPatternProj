@@ -11,7 +11,7 @@ namespace Shared.PatternsBase.Command.interfaces
 
         // All Commands Interact with DB if Persistence is Required.
         public void Execute();
-        public void Validate();
+        public bool Validate();
 
         public void Undo();
     }

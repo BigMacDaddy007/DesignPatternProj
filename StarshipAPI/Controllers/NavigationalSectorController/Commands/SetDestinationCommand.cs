@@ -32,9 +32,10 @@ namespace StarshipAPI.Controllers.NavigationalSectorController.Commands
             return new SetDestinationCommand(this.Context);
         }
 
-        public override void Validate()
+        public override bool Validate()
         {
             Console.WriteLine("Run Validation Against Params or Data in DB");
+            return true;
         }
 
         public override void Undo()

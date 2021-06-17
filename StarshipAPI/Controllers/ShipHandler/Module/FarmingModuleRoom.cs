@@ -1,30 +1,31 @@
-using StarshipAPI.Controllers.ShipConsoleController.Ship.Modules.Common.classes;
+using Microsoft.EntityFrameworkCore;
+using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
 using System;
 
-namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules
+namespace StarshipAPI.Controllers.ShipHandler.Module
 {
     public class FarmingModuleRoom : ModuleRoom
     {
         protected int numOfFarmers { get; set; }
         protected int farmSize { get; set; }
         protected string cropPlanted { get; set; }
-        public FarmingModuleRoom()
+        public FarmingModuleRoom(DbContext context) : base(context)
         {
             numOfFarmers = 0;
         }
-        public FarmingModuleRoom(int farmSize)
+        public FarmingModuleRoom(int farmSize, DbContext context) : base(context)
         {
             this.numOfFarmers = 0;
             this.farmSize = farmSize;
             cropPlanted = "corn";
         }
-        public FarmingModuleRoom(int numOfFarmers, int farmSize)
+        public FarmingModuleRoom(int numOfFarmers, int farmSize, DbContext context) : base(context)
         {
             this.numOfFarmers = numOfFarmers;
             this.farmSize = farmSize;
             cropPlanted = "corn";
         }
-        public FarmingModuleRoom(int numOfFarmers, int farmSize, string cropPlanted)
+        public FarmingModuleRoom(int numOfFarmers, int farmSize, string cropPlanted, DbContext context) : base(context)
         {
             this.numOfFarmers = numOfFarmers;
             this.farmSize = farmSize;
@@ -53,6 +54,11 @@ namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules
         {
             Console.WriteLine("this farm has " + numOfFarmers + " out of the " + farmSize + " it can occupy");
             return null;
+        }
+
+        public override void loadDbState()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.classes;
 using StarshipAPI.Models;
 using System;
@@ -8,32 +9,16 @@ using System.Threading.Tasks;
 
 namespace Shared.Modules.ShipManagementConsoleModule
 {
-    public class ShipManagementConsole
+    [Route("api/[controller]")]
+    [ApiController]
+    public class ShipManagementConsole : ControllerBase
     {
         private DbContext _context;
-        private Ship _ship;
-        private CommandParser _parser;
         
-        public CommandParser Parser { get { return this._parser; } }
-
-        public ShipManagementConsole(DbContext dbContext, Ship ship, CommandParser parser)
+        public ShipManagementConsole(DbContext dbContext)
         {
             this._context = dbContext;
-            this._ship = ship;
-            this._parser = parser;
-
-            this.getUserShip();
         }
 
-        private void getUserShip()
-        {
-            Console.WriteLine("Get User Ship From Db");
-            Console.WriteLine("Validate if ship belongs to user");
-        }
-
-        private void getShipStats()
-        {
-
-        }
     }
 }

@@ -18,7 +18,7 @@ namespace StarshipAPI.Shared.PatternsBase.Command.classes
 
         public abstract void Execute();
 
-        public abstract void Validate();
+        public abstract bool Validate();
 
         public abstract void Undo();
     }

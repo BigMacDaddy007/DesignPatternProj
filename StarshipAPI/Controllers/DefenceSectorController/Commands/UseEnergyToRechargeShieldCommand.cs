@@ -31,9 +31,10 @@ namespace StarshipAPI.Controllers.DefenceSectorController.Commands
             return new UseEnergyToRechargeShieldCommand(this.Context);
         }
 
-        public override void Validate()
+        public override bool Validate()
         {
             Console.WriteLine("Run Validation Against Params or Data in DB");
+            return true;
         }
 
         public override void Undo()

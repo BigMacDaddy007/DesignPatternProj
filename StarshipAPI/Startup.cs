@@ -34,6 +34,10 @@ namespace StarshipAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // services.AddDbContext<StarshipContext>(opt =>
+            //                                    opt.UseInMemoryDatabase("Starship"));
+            services.AddDbContext<StarshipContext>(opt => 
+                opt.UseSqlServer(Configuration.GetConnectionString("StarshipDatabase")));
 
 
             // 1. Add Authentication Services
@@ -94,6 +98,15 @@ namespace StarshipAPI
             services.AddDbContext<StarshipContext>(opt =>
                                                opt.UseInMemoryDatabase("Starship"));
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("*");
+                    });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -103,6 +116,8 @@ namespace StarshipAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseRouting();
@@ -114,8 +129,6 @@ namespace StarshipAPI
             {
                 endpoints.MapControllers();
             });
-
-            app.UseStaticFiles();
         }
 
     }

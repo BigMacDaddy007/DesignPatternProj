@@ -9,13 +9,12 @@ namespace StarshipAPI.Models
 {
     public class ShipModuleUnitRoom
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("Ship")]
         public long ShipId { get; set; }
 
         [ForeignKey("ModuleUnitRoom")]
         public long ModuleUnitRoomId { get; set; }
-        public SqlDateTime EntryDate { get; set; }
     }
 }

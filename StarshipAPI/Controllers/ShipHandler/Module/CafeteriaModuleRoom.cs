@@ -1,11 +1,12 @@
-using StarshipAPI.Controllers.ShipConsoleController.Ship.Modules.Common.classes;
+using Microsoft.EntityFrameworkCore;
+using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
 using System;
 
-namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules
+namespace StarshipAPI.Controllers.ShipHandler.Module
 {
     public class CafeteriaModuleRoom: ModuleRoom { 
     
-        public CafeteriaModuleRoom() { 
+        public CafeteriaModuleRoom(DbContext context) : base(context) { 
         
         }
         public void serveLunch(int dayOfWeek ) { 
@@ -40,6 +41,10 @@ namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules
             Console.WriteLine("this is one fine eating establishment");
             return null;
         }
-       
+
+        public override void loadDbState()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

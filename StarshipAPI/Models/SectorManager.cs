@@ -7,15 +7,16 @@ using System.Threading.Tasks;
 
 namespace StarshipAPI.Models
 {
-    public class Operator
+    public class SectorManager
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public int Salary { get; set; }
+        public int ResourcePerk { get; set; }
+        public int EnergyPerk { get; set; }
         public SectorType Sector { get; set; }
-        public SqlDateTime EntryDate { get; set; }
 
-        public ICollection<ShipOperator> ShipOperators { get; set; }
+        public ICollection<ShipSectorManager> ShipSectorManagers { get; set; }
     }
 }
