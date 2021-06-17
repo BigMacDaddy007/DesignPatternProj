@@ -19,6 +19,6 @@ namespace StarshipAPI.Models
         public SectorType Sector { get; set; }
 
         [ForeignKey("Ship")]
-        public long ShipID { get; set; }
+        public int ShipID { get; set; }
     }
 }
