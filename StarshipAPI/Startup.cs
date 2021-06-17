@@ -32,6 +32,15 @@ namespace StarshipAPI
             services.AddDbContext<StarshipContext>(opt => 
                 opt.UseSqlServer(Configuration.GetConnectionString("StarshipDatabase")));
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins("*");
+                    });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -40,6 +49,8 @@ namespace StarshipAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseRouting();
