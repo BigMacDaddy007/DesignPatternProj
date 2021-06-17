@@ -11,9 +11,9 @@ namespace StarshipAPI.Models
         public int Id { get; set; }
 
         [ForeignKey("Ship")]
-        public long ShipId { get; set; }
+        public int ShipId { get; set; }
 
         [ForeignKey("SectorManager")]
-        public long SectorManagerId { get; set; }
+        public int SectorManagerId { get; set; }
     }
 }
