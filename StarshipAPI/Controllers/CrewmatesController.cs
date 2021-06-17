@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StarshipAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace StarshipAPI.Controllers
 {
@@ -22,6 +23,7 @@ namespace StarshipAPI.Controllers
 
         // GET: api/Crewmates
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Crewmate>>> GetTodoItems()
         {
             return await _context.Crewmate.ToListAsync();
