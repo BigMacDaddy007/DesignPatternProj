@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace StarshipAPI.Models
 {
-    public class ShipOperator
+    public class ShipSectorManager
     {
         public long Id { get; set; }
 
         [ForeignKey("Ship")]
         public long ShipId { get; set; }
 
-        [ForeignKey("Operator")]
-        public long OperatorId { get; set; }
+        [ForeignKey("SectorManager")]
+        public long SectorManagerId { get; set; }
     }
 }

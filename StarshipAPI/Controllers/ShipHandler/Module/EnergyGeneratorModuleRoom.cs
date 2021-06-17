@@ -1,7 +1,7 @@
-using StarshipAPI.Controllers.ShipConsoleController.Ship.Modules.Common.classes;
+using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
 using System;
 
-namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules
+namespace StarshipAPI.Controllers.ShipHandler.Module
 {
     public class EnergyGeneratorModuleRoom : ModuleRoom
     {

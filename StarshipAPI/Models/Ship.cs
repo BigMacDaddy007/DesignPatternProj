@@ -23,7 +23,7 @@ namespace StarshipAPI.Models
         public bool Active { get; set; }
         public SqlDateTime EntryDate { get; set; }
 
-        public ICollection<ShipOperator> ShipOperators { get; set; }
+        public ICollection<ShipSectorManager> ShipSectorManagers { get; set; }
         public ICollection<Finance> Finances { get; set; }
         public ICollection<ShipModuleUnitRoom> ShipModulesUnitsRooms { get; set; }
     }
