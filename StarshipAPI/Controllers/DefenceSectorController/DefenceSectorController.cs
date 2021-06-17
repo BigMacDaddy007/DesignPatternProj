@@ -23,7 +23,6 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         {
             this._context = context;
             this._commandParser = new DefenceSectorCommandParser(this.getAvailableCommands());
-            // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 
         private IEnumerable<ICommandFactory> getAvailableCommands()
@@ -33,7 +32,6 @@ namespace StarshipAPI.Controllers.DefenceSectorController
                 new GetSectorFinanceReport(this._context),
                 new BuyShieldsCommand(this._context)
 
-                //TODO: 
             };
         }
 
@@ -61,6 +59,7 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         [HttpGet("buyshields/")]
         public ActionResult<Finance> BuyShields()
         {
+
             var parameters = new GeneralCommandParams("BuyShieldsCommand");
             var command = _commandParser.ParseCommand(parameters);
 
@@ -68,7 +67,17 @@ namespace StarshipAPI.Controllers.DefenceSectorController
             command.Execute();
             return (command.Result as GeneralCommandResult<Finance>).Payload.FirstOrDefault();
         }
+        [HttpGet("useenergyforshields/")]
+        public ActionResult<ModuleUnitRoom> UseEnergyToRechargeShieldCommand()
+        {
 
+            var parameters = new GeneralCommandParams("UseEnergyToRechargeShieldCommand");
+            var command = _commandParser.ParseCommand(parameters);
+            Console.WriteLine(command.ToString());
+            (command as UseEnergyToRechargeShieldCommand).Parameters = parameters;
+            command.Execute();
+            return (command.Result as GeneralCommandResult<ModuleUnitRoom>).Payload.FirstOrDefault();
+        }
 
     }
 }

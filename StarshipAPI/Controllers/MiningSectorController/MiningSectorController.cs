@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
 using StarshipAPI.Controllers.MiningSectorController.Commands;
+using StarshipAPI.Controllers.ShipHandler.Module;
 using StarshipAPI.Models;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
 
@@ -18,6 +19,7 @@ namespace StarshipAPI.Controllers.MiningSectorController
     {
         private readonly StarshipContext _context;
         private MiningSectorCommandsParser _commandParser;
+        
 
         public MiningSectorController(StarshipContext context)
         {
@@ -43,6 +45,13 @@ namespace StarshipAPI.Controllers.MiningSectorController
         }
 
 
-
+        [HttpPut("gomining/{id}")]
+        public async Task<ActionResult<Ship>> GoMining(int id)
+        {
+            MiningModuleRoom miningModuleRoom = new MiningModuleRoom(_context);
+            var ship =  await _context.Ship.FindAsync(id);
+            miningModuleRoom.mine(ship);
+            return ship;
+        }
     }
 }

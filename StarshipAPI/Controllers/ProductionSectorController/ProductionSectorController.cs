@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
 using StarshipAPI.Controllers.ProductionSectorController.Commands;
+using StarshipAPI.Controllers.ShipHandler.Module;
 using StarshipAPI.Models;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
 
@@ -38,6 +39,15 @@ namespace StarshipAPI.Controllers.ProductionSectorController
         public ActionResult<IEnumerable<ICommandFactory>> GetAvailableMiningCommands()
         {
             return this._commandParser.GetAvailabelCommands().ToList();
+        }
+        
+        [HttpPut("harvestfarm/{id}")]
+        public async Task<ActionResult<Ship>> harvestFarm(int id)
+        {
+            FarmingModuleRoom farmingModuleRoom = new FarmingModuleRoom(_context);
+            var ship = await _context.Ship.FindAsync(id);
+            farmingModuleRoom.harvest(ship);
+            return ship;
         }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
 using StarshipAPI.Controllers.MedicalSectorController.Commands;
+using StarshipAPI.Controllers.ShipHandler.Module;
 using StarshipAPI.Models;
 
 namespace StarshipAPI.Controllers.MedicalSectorController
@@ -38,6 +39,14 @@ namespace StarshipAPI.Controllers.MedicalSectorController
         public ActionResult<IEnumerable<ICommandFactory>> GetAvailableMiningCommands()
         {
             return this._commandParser.GetAvailabelCommands().ToList();
+        }
+        [HttpPut("admitpatient/{id}")]
+        public async Task<ActionResult<Crewmate>> admitPatient(int id)
+        {
+            MedicineModuleRoom medicineModuleRoom = new MedicineModuleRoom(_context);
+            var crewmate = await _context.Crewmate.FindAsync(id);
+            medicineModuleRoom.admitPatient(crewmate);
+            return crewmate;
         }
     }
 }

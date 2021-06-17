@@ -18,7 +18,7 @@ namespace StarshipAPI.Models
 
         public int Resources { get; set; }
 
-        public bool Active { get; set; }
+        public int Active { get; set; }
 
         public int LocationID { get; set; }
 

@@ -1,11 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using System;
+using StarshipAPI.Models;
 
 namespace StarshipAPI.Controllers.ShipHandler.Module.Common.classes
 {
     public abstract class ModuleRoom
     {
-        private DbContext _context;
+        protected DbContext _context;
         public int fuelExpenditure;
         public int totalFuel;
         public float efficiencyScore;

@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
+using StarshipAPI.Models;
 using System;
 
 namespace StarshipAPI.Controllers.ShipHandler.Module
@@ -28,31 +29,40 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
 
         public void employMiner()
         {
-            if (numOfMiners < mineSize)
+            if (numOfMiners < mineSize) 
                 numOfMiners++;
             else
                 Console.WriteLine("this mining operation is at full capacity");
         }
-        public void mine()
+        public void fireMiner() { 
+            if (numOfMiners == 0) 
+            Console.WriteLine("we literally have nobody employed");
+            else
+            numOfMiners--;
+        }
+        public void mine(Ship ship)
         {
-            //random number generator here to make the resources go up? could feature a few more
-            // of these across the ModuleRooms to have a little bit of dynamic changes to the attributes 
             Random r = new Random();
             int randomChance = r.Next(0, 100);
             if (randomChance > 80)
             {
                 Console.WriteLine("woah, big haul! We struck the gold mine boys");
-                totalResource = totalResource + 5;
+                ship.Resources = ship.Resources + 5;
+                ship.Energy = ship.Energy - 5;
             }
             if (randomChance > 50)
             {
                 Console.WriteLine("found some shiny space rocks");
-                totalResource = totalResource + 2;
+                ship.Resources = ship.Resources + 2;
+                ship.Energy = ship.Energy - 2;
             }
             else
             {
                 Console.WriteLine("nothing here. keep digging");
+                ship.Energy = ship.Energy - 1;
             }
+            _context.Update(ship);
+            _context.SaveChangesAsync();
         }
         public override string display()
         {
