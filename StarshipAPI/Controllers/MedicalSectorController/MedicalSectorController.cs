@@ -6,41 +6,38 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
-using StarshipAPI.Controllers.MiningSectorController.Commands;
+using StarshipAPI.Controllers.MedicalSectorController.Commands;
 using StarshipAPI.Models;
-using StarshipAPI.Shared.PatternsBase.Command.classes;
 
-namespace StarshipAPI.Controllers.MiningSectorController
+namespace StarshipAPI.Controllers.MedicalSectorController
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MiningSectorController : ControllerBase
+    public class MedicalSectorController : ControllerBase
     {
         private readonly StarshipContext _context;
-        private MiningSectorCommandsParser _commandParser;
+        private MedicalSectorCommandParser _commandParser;
 
-        public MiningSectorController(StarshipContext context)
+        public MedicalSectorController(StarshipContext context)
         {
             this._context = context;
-            this._commandParser = new MiningSectorCommandsParser(this.getAvailableCommands());
+            this._commandParser = new MedicalSectorCommandParser(this.getAvailableCommands());
             // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 
         private IEnumerable<ICommandFactory> getAvailableCommands()
         {
             return new ICommandFactory[] {
-                new ScanForResourcesCommand(this._context),
-                new MiningExpeditionCommand(this._context),
-                new RepairMiningEquipmentCommand(this._context)
+                new RunMedicalTestsCommand(this._context),
+                new VaccinateCrewCommand(this._context)
             };
         }
 
-        // GET: api/miningsector/
+        // GET: api/medicalsector/
         [HttpGet]
         public ActionResult<IEnumerable<ICommandFactory>> GetAvailableMiningCommands()
         {
             return this._commandParser.GetAvailabelCommands().ToList();
         }
-
     }
 }

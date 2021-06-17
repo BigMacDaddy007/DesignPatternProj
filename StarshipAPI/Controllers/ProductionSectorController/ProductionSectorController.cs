@@ -2,45 +2,42 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
-using StarshipAPI.Controllers.MiningSectorController.Commands;
+using StarshipAPI.Controllers.ProductionSectorController.Commands;
 using StarshipAPI.Models;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
 
-namespace StarshipAPI.Controllers.MiningSectorController
+namespace StarshipAPI.Controllers.ProductionSectorController
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MiningSectorController : ControllerBase
+    public class ProductionSectorController : ControllerBase
     {
         private readonly StarshipContext _context;
-        private MiningSectorCommandsParser _commandParser;
+        private ProductionSectorCommandParser _commandParser;
 
-        public MiningSectorController(StarshipContext context)
+        public ProductionSectorController(StarshipContext context)
         {
             this._context = context;
-            this._commandParser = new MiningSectorCommandsParser(this.getAvailableCommands());
+            this._commandParser = new ProductionSectorCommandParser(this.getAvailableCommands());
             // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 
         private IEnumerable<ICommandFactory> getAvailableCommands()
         {
             return new ICommandFactory[] {
-                new ScanForResourcesCommand(this._context),
-                new MiningExpeditionCommand(this._context),
-                new RepairMiningEquipmentCommand(this._context)
+                new ConvertEnergyAndResourceToFuelCommand(this._context),
+                new ConvertResourceToEnergyCommand(this._context)
             };
         }
 
-        // GET: api/miningsector/
+        // GET: api/productionsector/
         [HttpGet]
         public ActionResult<IEnumerable<ICommandFactory>> GetAvailableMiningCommands()
         {
             return this._commandParser.GetAvailabelCommands().ToList();
         }
-
     }
 }

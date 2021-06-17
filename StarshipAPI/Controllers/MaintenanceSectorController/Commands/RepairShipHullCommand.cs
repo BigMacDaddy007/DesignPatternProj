@@ -2,6 +2,7 @@
 using Shared.PatternsBase.Command.classes;
 using Shared.PatternsBase.Command.interfaces;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
+using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace StarshipAPI.Controllers.MaintenanceSectorController.Commands
             Console.WriteLine("Sending Response with details about result...");
         }
 
-        public ICommand MakeCommand(CommandExecuteParams arguments)
+        public ICommand MakeCommand()
         {
             return new RepairShipHullCommand(this.Context);
         }

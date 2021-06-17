@@ -2,45 +2,44 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shared.PatternsBase.Command.interfaces;
-using StarshipAPI.Controllers.MiningSectorController.Commands;
+using StarshipAPI.Controllers.FinancialSectorController.Commands;
 using StarshipAPI.Models;
-using StarshipAPI.Shared.PatternsBase.Command.classes;
 
-namespace StarshipAPI.Controllers.MiningSectorController
+namespace StarshipAPI.Controllers.FinancialSectorController
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MiningSectorController : ControllerBase
+    public class FinancialSectorController : ControllerBase
     {
         private readonly StarshipContext _context;
-        private MiningSectorCommandsParser _commandParser;
+        private FinancialSectorCommandParser _commandParser;
 
-        public MiningSectorController(StarshipContext context)
+        public FinancialSectorController(StarshipContext context)
         {
             this._context = context;
-            this._commandParser = new MiningSectorCommandsParser(this.getAvailableCommands());
+            this._commandParser = new FinancialSectorCommandParser(this.getAvailableCommands());
             // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 
         private IEnumerable<ICommandFactory> getAvailableCommands()
         {
             return new ICommandFactory[] {
-                new ScanForResourcesCommand(this._context),
-                new MiningExpeditionCommand(this._context),
-                new RepairMiningEquipmentCommand(this._context)
+                new BuyModuleCommand(this._context),
+                new CreateRoomCommand(this._context)
             };
         }
 
-        // GET: api/miningsector/
+        // GET: api/financialsector/
         [HttpGet]
         public ActionResult<IEnumerable<ICommandFactory>> GetAvailableMiningCommands()
         {
             return this._commandParser.GetAvailabelCommands().ToList();
         }
 
+        
     }
 }

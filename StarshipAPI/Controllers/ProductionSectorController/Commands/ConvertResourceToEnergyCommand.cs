@@ -2,18 +2,20 @@
 using Shared.PatternsBase.Command.classes;
 using Shared.PatternsBase.Command.interfaces;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
+using StarshipAPI.Shared.PatternsBase.Command.interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarshipAPI.Controllers.ProcessingSectorController.Commands
+namespace StarshipAPI.Controllers.ProductionSectorController.Commands
 {
-    public class ConvertResourceToEnergyCommand : CommandWithDbContext, ICommandFactory
+    public class ConvertResourceToEnergyCommand : CommandWithDbContext, ICommandFactory, ICommandParameters
     {
         public string CommandName { get { return "ConvertResourceToEnergyCommand"; } }
 
         public string CommandDescription { get { return "Convert Resource into Energy"; } }
+        public CommandExecuteParams Parameters { get; set; }
 
         public ConvertResourceToEnergyCommand(DbContext context) : base(context) { }
 
@@ -25,7 +27,7 @@ namespace StarshipAPI.Controllers.ProcessingSectorController.Commands
             Console.WriteLine("Sending Response with details about result...");
         }
 
-        public ICommand MakeCommand(CommandExecuteParams arguments)
+        public ICommand MakeCommand()
         {
             return new ConvertResourceToEnergyCommand(this.Context);
         }

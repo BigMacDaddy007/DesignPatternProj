@@ -10,7 +10,7 @@ namespace Shared.constants
         Medical,
         Mining,
         Maintenance,
-        Processing,
+        Production,
         Defence,
         Navigational,
         Financial
