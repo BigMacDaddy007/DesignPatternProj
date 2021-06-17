@@ -28,7 +28,7 @@ namespace StarshipAPI.Controllers.DefenceSectorController.Commands
         {
            try
            {
-                //Get DB
+                
                 var ship = new Ship();
                 ship.Id = 1;
 
