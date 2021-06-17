@@ -9,7 +9,7 @@ namespace StarshipAPI.Models
 {
     public class ShipModuleUnitRoom
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [ForeignKey("Ship")]
         public long ShipId { get; set; }
