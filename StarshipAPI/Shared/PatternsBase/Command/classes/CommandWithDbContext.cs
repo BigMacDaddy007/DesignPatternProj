@@ -17,6 +17,8 @@ namespace StarshipAPI.Shared.PatternsBase.Command.classes
 
         public ICommandResult Result { get; set; }
 
+
+
         public CommandWithDbContext(DbContext context)
         {
             this._context = context;
