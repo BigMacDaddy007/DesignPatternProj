@@ -42,8 +42,6 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
         }
         public void mine(Ship ship)
         {
-            //random number generator here to make the resources go up? could feature a few more
-            // of these across the ModuleRooms to have a little bit of dynamic changes to the attributes 
             Random r = new Random();
             int randomChance = r.Next(0, 100);
             if (randomChance > 80)
