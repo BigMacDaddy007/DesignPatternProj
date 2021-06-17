@@ -1,5 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shared.constants;
 using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Controllers.Common.Commands.Reports;
+using StarshipAPI.Controllers.Common.Commands.Reports.Parameters;
+using StarshipAPI.Controllers.Common.Commands.Reports.Results;
 using StarshipAPI.Controllers.DefenceSectorController.Commands;
 using StarshipAPI.Models;
 using System;
@@ -26,7 +30,8 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         private IEnumerable<ICommandFactory> getAvailableCommands()
         {
             return new ICommandFactory[] {
-                new UseEnergyToRechargeShieldCommand(this._context)
+                new UseEnergyToRechargeShieldCommand(this._context),
+                new GetSectorFinanceReport(this._context)
                 //TODO: 
             };
         }
@@ -36,6 +41,17 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         public ActionResult<IEnumerable<ICommandFactory>> GetAvailableMiningCommands()
         {
             return this._commandParser.GetAvailabelCommands().ToList();
+        }
+
+        [HttpGet("financereport/")]
+        public IEnumerable<Finance> GetSectorFinanceReport()
+        {
+            var ship = new Ship();
+            ship.Id = 1;
+            var parameters = new ReportParams("GetSectorFinanceReport", SectorType.Mining, ship);
+            var command = _commandParser.ParseCommand(parameters);
+            command.Execute();
+            return (command.Result as ReportResult<Finance>).Payload;
         }
     }
 }

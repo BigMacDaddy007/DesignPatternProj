@@ -42,5 +42,7 @@ namespace StarshipAPI.Controllers.MiningSectorController
             return this._commandParser.GetAvailabelCommands().ToList();
         }
 
+
+
     }
 }
