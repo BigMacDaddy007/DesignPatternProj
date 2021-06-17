@@ -12,24 +12,28 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
         public FarmingModuleRoom(DbContext context) : base(context)
         {
             numOfFarmers = 0;
+            _context = context;
         }
         public FarmingModuleRoom(int farmSize, DbContext context) : base(context)
         {
             this.numOfFarmers = 0;
             this.farmSize = farmSize;
             cropPlanted = "corn";
+            _context = context;
         }
         public FarmingModuleRoom(int numOfFarmers, int farmSize, DbContext context) : base(context)
         {
             this.numOfFarmers = numOfFarmers;
             this.farmSize = farmSize;
             cropPlanted = "corn";
+            _context = context;
         }
         public FarmingModuleRoom(int numOfFarmers, int farmSize, string cropPlanted, DbContext context) : base(context)
         {
             this.numOfFarmers = numOfFarmers;
             this.farmSize = farmSize;
             this.cropPlanted = cropPlanted;
+            _context = context;
         }
 
 
@@ -40,15 +44,25 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
             else
                 Console.WriteLine("this farm has too many hands");
         }
-        public void harvest()
+        public void fireFarmer() {
+            if(numOfFarmers == 0)
+            Console.WriteLine("we got no farmers");
+            else
+            numOfFarmers--;
+        }
+        public void harvest(Ship ship)
         {
             Console.WriteLine("harvesting all the " + cropPlanted);
-            totalResource = totalResource + 20;
+            ship.Resources = ship.Resources + 20;
+            _context.Update(ship);
+            _context.SaveChangesAsync();
         }
-        public void plant()
+        public void plant(Ship ship)
         {
             Console.WriteLine("planting all the " + cropPlanted + " seeds");
-            totalResource = totalResource - 5;
+            ship.Resources = ship.Resources - 5;
+             _context.Update(ship);
+            _context.SaveChangesAsync();
         }
         public override string display()
         {

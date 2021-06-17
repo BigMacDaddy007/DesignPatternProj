@@ -26,7 +26,7 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
             this.wardSize = wardSize;
         }
 
-        public void admitPatient(Crewmate sickCrewmate, DbContext context)
+        public void admitPatient(Crewmate sickCrewmate)
         {
             if (numOfPatients < wardSize) {
                 Console.WriteLine("patient admitted!");
@@ -34,8 +34,8 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
                 sickCrewmate.Health = sickCrewmate.Health + 20;
                 Console.WriteLine("patient treated and discharged!");
                 numOfPatients--;
-                context.Update(sickCrewmate);
-                context.SaveChangesAsync();
+                _context.Update(sickCrewmate);
+                _context.SaveChangesAsync();
 
             }
             else

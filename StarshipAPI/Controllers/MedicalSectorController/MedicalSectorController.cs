@@ -29,8 +29,7 @@ namespace StarshipAPI.Controllers.MedicalSectorController
         {
             return new ICommandFactory[] {
                 new RunMedicalTestsCommand(this._context),
-                new VaccinateCrewCommand(this._context),
-                new AdmitPatientCommand(this._context)
+                new VaccinateCrewCommand(this._context)
             };
         }
 

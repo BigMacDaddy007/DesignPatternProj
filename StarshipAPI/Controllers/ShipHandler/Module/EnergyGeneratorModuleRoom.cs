@@ -17,10 +17,12 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
             this.numOfGenerators = numOfGenerators;
         }
 
-        public void addGenerator()
+        public void addGenerator(Ship ship)
         {
-            //Add Module into Db
             numOfGenerators++; //UNLIMITED POWER
+            ship.Fuel = ship.Fuel + 50;
+            _context.Update(ship);
+            _context.SaveChangesAsync();
         }
 
         public override string display()

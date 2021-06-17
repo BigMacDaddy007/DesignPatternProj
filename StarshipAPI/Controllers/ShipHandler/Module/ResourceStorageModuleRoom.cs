@@ -9,19 +9,22 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
         public ResourceStorageModuleRoom(DbContext context) : base(context)
         {
         }
-        public ResourceStorageModuleRoom(int numOfResources, DbContext context) : base(context)
+        public void addResources(int newResources, Ship ship)
         {
-            this.totalResource = numOfResources;
-        }
-
-        public void addResources(int newResources)
-        {
-            totalResource = totalResource + newResources;
+            ship.Resources = ship.Resources + newResources;
             Console.WriteLine("resources have been added");
+            _context.Update(ship);
+            _context.SaveChangesAsync();
         }
-        public override string display()
+        public void removeResources(int removedResources, Ship ship) { 
+            ship.Resources = ship.Resources - removedResources;
+            Console.WriteLine("resources have been removed");
+            _context.Update(ship);
+            _context.SaveChangesAsync();
+        }
+        public override string display(Ship ship)
         {
-            Console.WriteLine("we have " + totalResource + " amount of resources");
+            Console.WriteLine("we have " + ship.Resources + " amount of resources");
             return null;
         }
 
