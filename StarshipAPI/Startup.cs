@@ -39,8 +39,6 @@ namespace StarshipAPI
             services.AddDbContext<StarshipContext>(opt => 
                 opt.UseSqlServer(Configuration.GetConnectionString("StarshipDatabase")));
 
-
-            // 1. Add Authentication Services
             services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
