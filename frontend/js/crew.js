@@ -1,84 +1,7 @@
-import { get, post } from './request.mjs';
-
 let crew = [];
 let crewTotal = document.getElementById('total');
 const launchBtn = document.getElementById('launch');
 const cancelBtn = document.getElementById('cancel');
-
-const dataObj = [
-    {
-        id:0,
-        name:"John Doe",
-        type:"Engineer",
-        stats:{
-            Attack:0,
-            Health:5,
-            Shield:2,
-            Regen:0,
-            Speed:0
-        }
-    },
-    {
-        id:1,
-        name:"John Doe",
-        type:"Engineer",
-        stats:{
-            Attack:0,
-            Health:5,
-            Shield:2,
-            Regen:0,
-            Speed:0
-        }
-    },
-    {
-        id:2,
-        name:"John Doe",
-        type:"Engineer",
-        stats:{
-            Attack:0,
-            Health:5,
-            Shield:2,
-            Regen:0,
-            Speed:0
-        }
-    },
-    {
-        id:3,
-        name:"John Doe",
-        type:"Engineer",
-        stats:{
-            Attack:0,
-            Health:5,
-            Shield:2,
-            Regen:0,
-            Speed:0
-        }
-    },
-    {
-        id:4,
-        name:"John Doe",
-        type:"Engineer",
-        stats:{
-            Attack:0,
-            Health:5,
-            Shield:2,
-            Regen:0,
-            Speed:0
-        }
-    },
-    {
-        id:5,
-        name:"John Doe",
-        type:"Engineer",
-        stats:{
-            Attack:0,
-            Health:5,
-            Shield:2,
-            Regen:0,
-            Speed:0
-        }
-    }
-];
 
 const table = document.getElementById("table-body");
 
@@ -98,7 +21,7 @@ const row = (obj, index) => {
         <tr class="t-row">
         <td>${obj.name}</th>
         <td>${obj.type}</td>
-        <td id="stats-${index}">${displayStats(obj.stats)}</td>
+        <td id="stats-${index}">${displayStats(obj)}</td>
         <td id="btn-${index}">
         <button value="${index}" type="button" class="btn btn-success hire-btn">Hire</button>
         </td>
@@ -132,14 +55,22 @@ const displayCrew = () => {
  `;
 }
 
-const displayStats = (stats) => {
+const displayStats = (obj) => {
+    let stats = {
+        Attack: obj["attack"],
+        Health: obj["health"],
+        Shields: obj["shields"],
+        ShieldRegen: obj["shieldRegen"],
+        Speed: obj["speed"]
+    }
+
     let result = ``;
     for(const key in stats){
         if(stats[key] > 0){
             result += `${key} +${stats[key]} `;
         }
     }
-    return result
+    return result;
 }
 
 const launch = () => {
@@ -153,4 +84,15 @@ const cancel = () => {
 launchBtn.addEventListener('click', () => launch());
 cancelBtn.addEventListener('click', () => cancel());
 
-populate(dataObj);
+document.addEventListener('DOMContentLoaded', async () => {
+    let dataJson = await fetch("https://starshipapi20210617150221.azurewebsites.net/api/Crewmates")
+    .then(res => res.json())
+    .then((data) => {
+        return data;
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+    populate(dataJson);
+});
