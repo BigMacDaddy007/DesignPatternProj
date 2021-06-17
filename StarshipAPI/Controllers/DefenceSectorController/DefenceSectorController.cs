@@ -42,20 +42,6 @@ namespace StarshipAPI.Controllers.DefenceSectorController
             return this._commandParser.GetAvailabelCommands().ToList();
         }
 
-        [HttpPost("command/")]
-        public IEnumerable<Finance> GetSectorFinanceReport(GeneralCommandParams obj)
-        {
-            // Get The Ship
-
-            var ship = new Ship();
-            ship.Id = 1;
-
-            var command = _commandParser.ParseCommand(obj);
-            (command as GetSectorFinanceReport).Parameters =  obj;
-            command.Execute();
-            return (command.Result as GeneralCommandResult<Finance>).Payload;
-        }
-
         [HttpGet("buyshields/")]
         public ActionResult<Finance> BuyShields()
         {
@@ -67,6 +53,7 @@ namespace StarshipAPI.Controllers.DefenceSectorController
             command.Execute();
             return (command.Result as GeneralCommandResult<Finance>).Payload.FirstOrDefault();
         }
+
         [HttpGet("useenergyforshields/")]
         public ActionResult<ModuleUnitRoom> UseEnergyToRechargeShieldCommand()
         {
@@ -79,5 +66,23 @@ namespace StarshipAPI.Controllers.DefenceSectorController
             return (command.Result as GeneralCommandResult<ModuleUnitRoom>).Payload.FirstOrDefault();
         }
 
+        [HttpGet("report/finance/")]
+        public ActionResult<GeneralCommandResult<Finance>> GenerateReport()
+        {
+            var ship = new Ship();
+            ship.Id = 1;
+
+            var parameters = new GeneralCommandParams("GetSectorFinanceReport");
+            parameters.Sector = SectorType.Defence;
+            parameters.Ship = ship;
+            var command = _commandParser.ParseCommand(parameters);
+
+            (command as GetSectorFinanceReport).Parameters = parameters;
+            command.Execute();
+            return (command.Result as GeneralCommandResult<Finance>);
+        }
+
     }
+
+
 }
