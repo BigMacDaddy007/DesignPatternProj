@@ -3,8 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Shared.constants;
 using Shared.PatternsBase.Command.classes;
 using Shared.PatternsBase.Command.interfaces;
-using StarshipAPI.Controllers.Common.Commands.Reports.Parameters;
-using StarshipAPI.Controllers.Common.Commands.Reports.Results;
 using StarshipAPI.Models;
 using StarshipAPI.Shared.PatternsBase.Command.classes;
 using StarshipAPI.Shared.PatternsBase.Command.interfaces;
@@ -13,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarshipAPI.Controllers.Common.Commands.Reports
+namespace StarshipAPI.Controllers.Common.Commands
 
 {
     public class GetSectorFinanceReport : CommandWithDbContext, ICommandFactory, ICommandParameters
@@ -30,26 +28,33 @@ namespace StarshipAPI.Controllers.Common.Commands.Reports
         {
             try
             {
-                if (!this.Validate() || (this.Parameters as ReportParams).ActiveShip == null)
+                if (!this.Validate() || (this.Parameters as GeneralCommandParams).Ship == null)
                 {
                     throw new Exception("Invalid Parameters Provided");
                 }
 
-                this.Result = new ReportResult<Finance>();
+                this.Result = new GeneralCommandResult<Finance>();
 
-                (this.Result as ReportResult<Finance>).Payload = (IEnumerable<Finance>)GetReport((this.Parameters as ReportParams).ActiveShip);
+                (this.Result as GeneralCommandResult<Finance>).Payload = (IEnumerable<Finance>)GetReport((this.Parameters as GeneralCommandParams).Ship);
+
+                if ((this.Result as GeneralCommandResult<Finance>).Payload == null)
+                {
+                    throw new Exception("Request Failed.");
+                }
+
 
             } catch (Exception ex)
             {
-                this.Result = new ReportResult<Finance>();
+                this.Result = new GeneralCommandResult<Finance>();
                 this.Result.Status = ResultStatus.FAILED;
                 this.Result.Reason = ex.Message;
+                (this.Result as GeneralCommandResult<Finance>).Payload = null;
             }
         }
 
-        private async Task<ActionResult<IEnumerable<Finance>>> GetReport(Ship Ship)
+        private async Task<IEnumerable<Finance>> GetReport(Ship Ship)
         {
-            var report = await (this.Context as StarshipContext).Finance.Where(s => s.ShipId == Ship.Id).ToListAsync();
+            var report = await (this.Context as StarshipContext).Finance.Where(s => s.ShipID == Ship.Id).ToListAsync();
             return report;
         }
 
@@ -65,7 +70,7 @@ namespace StarshipAPI.Controllers.Common.Commands.Reports
 
         public override bool Validate()
         {
-            return (Parameters.GetType() == typeof(ReportParams));
+            return (Parameters != null && Parameters.GetType() == typeof(GeneralCommandParams));
         }
     }
 }

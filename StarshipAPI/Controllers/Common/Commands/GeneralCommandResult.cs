@@ -5,14 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StarshipAPI.Controllers.Common.Commands.Reports.Results
+namespace StarshipAPI.Controllers.Common.Commands
 {
-    public class ReportResult <T> : ICommandResult
+    public class GeneralCommandResult <T> : ICommandResult
     {
         public ResultStatus Status { get; set; }
         public string Reason { get; set; }
         public IEnumerable<T> Payload { get; set; }
 
-        public ReportResult() { }
+        public GeneralCommandResult() { }
     }
 }
