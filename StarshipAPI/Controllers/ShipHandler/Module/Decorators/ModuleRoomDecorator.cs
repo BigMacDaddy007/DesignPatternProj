@@ -1,7 +1,7 @@
-using StarshipAPI.Controllers.ShipConsoleController.Ship.Modules.Common.classes;
 using System;
+using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
 
-namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules.Decorators
+namespace StarshipAPI.Controllers.ShipHandler.Module.Decorators
 {
     public class ModuleRoomDecorator
     {

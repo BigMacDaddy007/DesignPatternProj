@@ -1,6 +1,6 @@
 using System;
 
-namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules.Common.classes
+namespace StarshipAPI.Controllers.ShipHandler.Module.Common.classes
 {
     public abstract class ModuleRoom
     {
@@ -22,6 +22,7 @@ namespace StarshipAPI.Controllers.ShipConsoleController.Ship.Modules.Common.clas
             ceilingPainted = false;
             hasWindows = false;
         }
+
         public string moduleID { set; get; }
         public int getFuelExpenditure() { return fuelExpenditure; }
         public int getEnergyExpenditure() { return totalEnergyCost; }
