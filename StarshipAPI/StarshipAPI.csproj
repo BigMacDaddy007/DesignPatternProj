@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Controllers\MaintenanceSectorController\Commands\" />
     <Folder Include="Shared\Modules\EncounterEngine\" />
   </ItemGroup>
 
