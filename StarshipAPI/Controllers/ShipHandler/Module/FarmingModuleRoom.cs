@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
+using StarshipAPI.Models;
 using System;
 
 namespace StarshipAPI.Controllers.ShipHandler.Module

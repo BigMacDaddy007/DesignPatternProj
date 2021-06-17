@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
+using StarshipAPI.Models;
 using System;
 
 namespace StarshipAPI.Controllers.ShipHandler.Module
@@ -16,7 +17,7 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
         {
             this.numOfGenerators = numOfGenerators;
         }
-
+         
         public void addGenerator(Ship ship)
         {
             numOfGenerators++; //UNLIMITED POWER

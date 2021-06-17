@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using StarshipAPI.Controllers.ShipHandler.Module.Common.classes;
+using StarshipAPI.Models;
 using System;
 
 namespace StarshipAPI.Controllers.ShipHandler.Module
@@ -22,9 +23,9 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
             _context.Update(ship);
             _context.SaveChangesAsync();
         }
-        public override string display(Ship ship)
+        public override string display()
         {
-            Console.WriteLine("we have " + ship.Resources + " amount of resources");
+            Console.WriteLine("we have resources, we hope");
             return null;
         }
 
