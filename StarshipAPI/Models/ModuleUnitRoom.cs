@@ -10,7 +10,7 @@ namespace StarshipAPI.Models
 {
     public class ModuleUnitRoom
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public SectorType Sector { get; set; }
         public int EnergyMaintenanceCost { get; set; }

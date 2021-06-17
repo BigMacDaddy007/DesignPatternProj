@@ -23,6 +23,8 @@ namespace StarshipAPI.Models
         public DbSet<ModuleUnitRoom> ModuleUnitRoom { get; set; }
 
         public DbSet<SectorManager> SectorManager { get; set; }
+
+        public DbSet<ShipSectorManager> ShipSectorManager { get; set; }
         public DbSet<ShipModuleUnitRoom> ShipModuleUnitRoom { get; set; }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shared.constants;
+using Shared.PatternsBase.Command.classes;
 using Shared.PatternsBase.Command.interfaces;
+using StarshipAPI.Controllers.Common.Commands;
 using StarshipAPI.Controllers.DefenceSectorController.Commands;
 using StarshipAPI.Models;
 using System;
@@ -26,16 +29,60 @@ namespace StarshipAPI.Controllers.DefenceSectorController
         private IEnumerable<ICommandFactory> getAvailableCommands()
         {
             return new ICommandFactory[] {
-                new UseEnergyToRechargeShieldCommand(this._context)
+                new UseEnergyToRechargeShieldCommand(this._context),
+                new GetSectorFinanceReport(this._context),
+                new BuyShieldsCommand(this._context)
+
                 //TODO: 
             };
         }
 
         // GET: api/defencesector/
         [HttpGet]
-        public ActionResult<IEnumerable<ICommandFactory>> GetAvailableMiningCommands()
+        public ActionResult<IEnumerable<ICommandFactory>> GetAvailableDefenceCommands()
         {
             return this._commandParser.GetAvailabelCommands().ToList();
         }
+
+        [HttpPost("command/")]
+        public IEnumerable<Finance> GetSectorFinanceReport(GeneralCommandParams obj)
+        {
+            // Get The Ship
+
+            var ship = new Ship();
+            ship.Id = 1;
+
+            var command = _commandParser.ParseCommand(obj);
+            (command as GetSectorFinanceReport).Parameters =  obj;
+            command.Execute();
+            return (command.Result as GeneralCommandResult<Finance>).Payload;
+        }
+
+        [HttpGet("buyshields/")]
+        public ActionResult<string> BuyShields()
+        {
+
+            //var parameters = new Finance();
+            //parameters.Request = "Buy Shield";
+            //parameters.Sector = SectorType.Defence;
+            //parameters.Value = 100;
+            //parameters.ShipID = 1;
+            //parameters.Type = Shared.Constants.FinanceType.Income;
+
+            //Console.WriteLine(parameters.ToString());
+
+            //var result = this._context.Finance.Add(parameters);
+            //this._context.SaveChanges();          
+            //return result.ToString();
+
+            var parameters = new GeneralCommandParams("BuyShieldsCommand");
+            var command = _commandParser.ParseCommand(parameters);
+            Console.WriteLine(command.ToString());
+            (command as BuyShieldsCommand).Parameters = parameters;
+            command.Execute();
+            return "Done";
+        }
+
+
     }
 }
