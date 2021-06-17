@@ -16,6 +16,5 @@ namespace StarshipAPI.Models
 
         [ForeignKey("ModuleUnitRoom")]
         public long ModuleUnitRoomId { get; set; }
-        public SqlDateTime EntryDate { get; set; }
     }
 }

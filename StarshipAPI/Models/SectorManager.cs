@@ -16,7 +16,6 @@ namespace StarshipAPI.Models
         public int ResourcePerk { get; set; }
         public int EnergyPerk { get; set; }
         public SectorType Sector { get; set; }
-        public SqlDateTime EntryDate { get; set; }
 
         public ICollection<ShipSectorManager> ShipSectorManagers { get; set; }
     }
