@@ -48,15 +48,18 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
             {
                 Console.WriteLine("woah, big haul! We struck the gold mine boys");
                 ship.Resources = ship.Resources + 5;
+                ship.Energy = ship.Energy - 5;
             }
             if (randomChance > 50)
             {
                 Console.WriteLine("found some shiny space rocks");
                 ship.Resources = ship.Resources + 2;
+                ship.Energy = ship.Energy - 2;
             }
             else
             {
                 Console.WriteLine("nothing here. keep digging");
+                ship.Energy = ship.Energy - 1;
             }
             _context.Update(ship);
             _context.SaveChangesAsync();

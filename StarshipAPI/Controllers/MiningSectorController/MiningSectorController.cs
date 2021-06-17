@@ -46,12 +46,12 @@ namespace StarshipAPI.Controllers.MiningSectorController
 
 
         [HttpPut("gomining/{id}")]
-        public async Task<IActionResult> GoMining(int id)
+        public async Task<ActionResult<Ship>> GoMining(int id)
         {
             MiningModuleRoom miningModuleRoom = new MiningModuleRoom(_context);
             var ship =  await _context.Ship.FindAsync(id);
             miningModuleRoom.mine(ship);
-            return NoContent();
+            return ship;
         }
     }
 }

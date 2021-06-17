@@ -55,6 +55,7 @@ namespace StarshipAPI.Controllers.ShipHandler.Module
         {
             Console.WriteLine("harvesting all the " + cropPlanted);
             ship.Resources = ship.Resources + 20;
+            ship.Energy = ship.Energy - 10;
             _context.Update(ship);
             _context.SaveChangesAsync();
         }
