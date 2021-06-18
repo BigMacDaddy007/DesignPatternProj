@@ -22,7 +22,6 @@ namespace StarshipAPI.Controllers.NavigationalSectorController
         {
             this._context = context;
             this._commandParser = new NavigationalSectorCommandParser(this.getAvailableCommands());
-            // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 
         private IEnumerable<ICommandFactory> getAvailableCommands()

@@ -23,7 +23,6 @@ namespace StarshipAPI.Controllers.MedicalSectorController
         {
             this._context = context;
             this._commandParser = new MedicalSectorCommandParser(this.getAvailableCommands());
-            // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 
         private IEnumerable<ICommandFactory> getAvailableCommands()
