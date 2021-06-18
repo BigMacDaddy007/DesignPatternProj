@@ -42,7 +42,6 @@ namespace StarshipAPI.Controllers
         }
 
         // PUT: api/Ships/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutShip(int id, Ship ship)
         {
@@ -73,7 +72,6 @@ namespace StarshipAPI.Controllers
         }
 
         // POST: api/Ships
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Ship>> PostShip(Ship ship)
         {

@@ -42,7 +42,6 @@ namespace StarshipAPI.Controllers
         }
 
         // PUT: api/Finances/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutFinance(int id, Finance finance)
         {
@@ -73,7 +72,6 @@ namespace StarshipAPI.Controllers
         }
 
         // POST: api/Finances
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Finance>> PostFinance(Finance finance)
         {

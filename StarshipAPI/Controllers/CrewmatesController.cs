@@ -42,7 +42,6 @@ namespace StarshipAPI.Controllers
         }
 
         // PUT: api/Crewmates/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCrewmate(int id, Crewmate crewmate)
         {
@@ -73,7 +72,6 @@ namespace StarshipAPI.Controllers
         }
 
         // POST: api/Crewmates
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Crewmate>> PostCrewmate(Crewmate crewmate)
         {

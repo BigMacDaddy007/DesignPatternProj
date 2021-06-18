@@ -25,7 +25,6 @@ namespace StarshipAPI.Controllers.MiningSectorController
         {
             this._context = context;
             this._commandParser = new MiningSectorCommandsParser(this.getAvailableCommands());
-            // this._shipConsole.getShip(string userToken/ShipIdentifier);
         }
 
         private IEnumerable<ICommandFactory> getAvailableCommands()
